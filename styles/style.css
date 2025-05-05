@@ -61,16 +61,16 @@
 }
 
 .card_title {
+  padding: 6px 10px;
   font-family: inherit;
-  font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  padding: 8px 10px;
+  font-variation-settings: "wght" 700;
 }
 
 .card_image-section {
   position: relative;
-  justify-self: center;
+  display: block;
   border-block-start: 2px solid #000;
   border-block-end: 2px solid #000;
   inline-size: clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem);
@@ -80,7 +80,7 @@
 .image {
   display: block;
   inline-size: 100%;
-  block-size: 100%;
+  aspect-ratio: 1/1;
 }
 
 .label {
@@ -88,8 +88,9 @@
   top: 27px;
   right: 25px;
   font-family: var(--accent-font);
+  font-size: 14px;
   text-transform: uppercase;
-  text-shadow: 0 0 2px #fff;
+  text-shadow: 0 0 1px #fff;
   mix-blend-mode: hard-light;
 }
 
@@ -102,43 +103,78 @@
 
 .text {
   font-family: inherit;
-  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
+  font-variation-settings: "wght" 400;
 }
 
 .card_buttons {
   display: flex;
   justify-content: end;
-  gap: 12px;
+  gap: 6px;
+  margin-block-end: 25px;
   padding-inline: 25px;
-  padding-block-end: 25px;
 }
 
-.card__like-button {
-  padding-inline: 0;
+.button {
+  position: relative;
+  padding: 0;
+}
+
+.card__icon-button {
+  align-self: center;
   border: none;
   background-color: #fff;
-  align-self: center;
 }
 
 .like-icon {
+  display: block;
   align-self: center;
 }
 
-.card__button {
+.card__like-button {
   display: flex;
   justify-content: center;
-  padding-block: 12px;
   border: 2px solid #000;
+  padding-block: 11px;
   background-color: #fff;
+  transition: box-shadow 0.3s ease;
   inline-size: 130px;
 }
 
+.card__like-button:focus {
+  outline: none;
+}
+
+.card__like-button:focus-visible {
+  box-shadow: 2px 2px 0 #000;
+}
+
+.button:has(.card__like-button)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  transition: transform 0.5s ease-in-out;
+  transform: scaleX(0);
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.button:has(.card__like-button):hover::after {
+  transition: transform 0.5s ease-in-out;
+  transform: scaleX(1);
+}
+
 .button__text {
-  display: block;
+  position: absolute;
+  z-index: 3;
   font-family: var(--accent-font);
-  font-weight: 400;
   font-size: 14px;
   line-height: 90%;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+@media (width <= 375px) {
 }
