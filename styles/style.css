@@ -13,9 +13,9 @@
 .page {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-self: center;
   font-family: var(--head-font), sans-serif;
-  background-color: #fff;
+  background-color: var(--bg-color);
   background-image: var(--bg-gradient);
   background-attachment: fixed;
   min-inline-size: 320px;
@@ -24,9 +24,10 @@
 
 .header {
   margin-block: 100px;
-  border: 2px solid #000;
+  border: 2px solid var(--accent-color);
   padding: 128px 121px;
   background-color: var(--bg-color);
+  min-inline-size: 700px;
 }
 
 .header-title {
@@ -51,8 +52,10 @@
 .content-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 50px;
-  margin-inline: 372px;
+  inline-size: 700px;
 }
 
 .content-section_card {
@@ -66,14 +69,11 @@
   font-size: 18px;
   line-height: 100%;
   font-variation-settings: "wght" 700;
+  border-block-end: 2px solid var(--accent-color, #000);
 }
 
 .card_image-section {
   position: relative;
-  display: block;
-  border-block-start: 2px solid #000;
-  border-block-end: 2px solid #000;
-  inline-size: clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem);
   aspect-ratio: 1/1;
 }
 
@@ -90,15 +90,59 @@
   font-family: var(--accent-font);
   font-size: 14px;
   text-transform: uppercase;
-  text-shadow: 0 0 1px #fff;
+  text-shadow: 0 0 2px #fff;
   mix-blend-mode: hard-light;
 }
+
+@supports (--webkit-text-stroke: 1px solid #fff) or
+  (text-stroke: 2px solid #fff) {
+  .label {
+    -webkit-text-stroke: 1px solid var(--bg-color, #fff);
+    text-stroke: 2px solid var(--bg-color, #fff);
+    box-shadow: none;
+  }
+}
+
+.lesson {
+  filter: hue-rotate(240deg);
+}
+
+.blank-page {
+  filter: blur(0.2rem);
+}
+
+.first-project {
+  filter: sepia(80%);
+}
+
+.ideal {
+  filter: brightness(150%);
+}
+
+.second-project {
+  filter: contrast(50%);
+}
+
+.dark {
+  filter: grayscale(100%);
+}
+
+.third-project {
+  filter: saturate(10%);
+}
+
+.now {
+  filter: invert(0.7);
+}
+
+
 
 .card_text-section {
   display: flex;
   flex-direction: column;
   gap: 27px;
   padding: 25px 25px;
+  border-block-start: 2px solid var(--accent-color, #000);
 }
 
 .text {
@@ -111,69 +155,129 @@
 .card_buttons {
   display: flex;
   justify-content: end;
-  gap: 6px;
-  margin-block-end: 25px;
+  gap: 4px;
+  margin-block-end: 24px;
   padding-inline: 25px;
 }
 
 .button {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--accent-color);
   padding: 0;
+  color: #fff;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
 }
 
 .card__icon-button {
   align-self: center;
-  border: none;
+  border: 2px solid transparent;
   background-color: #fff;
+  transition: border 0.3s ease;
 }
 
-.like-icon {
-  display: block;
-  align-self: center;
-}
-
-.card__like-button {
-  display: flex;
-  justify-content: center;
-  border: 2px solid #000;
-  padding-block: 11px;
-  background-color: #fff;
-  transition: box-shadow 0.3s ease;
-  inline-size: 130px;
-}
-
-.card__like-button:focus {
+.card__icon-button:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible {
-  box-shadow: 2px 2px 0 #000;
+.card__icon-button:focus-visible {
+  border: 2px solid var(--accent-color);
+  transition: border 0.3s ease;
 }
 
-.button:has(.card__like-button)::after {
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+}
+
+.button:not(.card__icon-button):focus {
+  outline: none;
+}
+
+.button:not(.card__icon-button):focus-visible {
+  box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.button:not(.card__icon-button)::after {
   content: "";
   position: absolute;
   inset: 0;
   background-color: #000;
   transition: transform 0.5s ease-in-out;
   transform: scaleX(0);
+  transform-origin: left;
   inline-size: 100%;
   block-size: 100%;
 }
 
-.button:has(.card__like-button):hover::after {
+.button:not(.card__icon-button):hover::after {
   transition: transform 0.5s ease-in-out;
   transform: scaleX(1);
 }
 
 .button__text {
-  position: absolute;
-  z-index: 3;
+  position: relative;
+  z-index: 2;
   font-family: var(--accent-font);
   font-size: 14px;
   line-height: 90%;
-  color: #fff;
   mix-blend-mode: difference;
+}
+
+.button__memory {
+  display: flex;
+  justify-content: center;
+  min-inline-size: 335px;
+  margin-block-end: 103px;
+  block-size: 55px;
+}
+
+.floppy {
+  position: relative;
+  z-index: 2;
+  color: var(--bg-color);
+  mix-blend-mode: difference;
+}
+
+dialog::backdrop {
+  opacity: 0.75;
+  background-color: var(--accent-color);
+  background-position: fixed;
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  min-inline-size: 353px;
+}
+
+.dialog-text {
+  display: flex;
+  gap: 20px;
+}
+
+.dialog-text__floppy {
+  align-self: center;
+}
+
+.dialog-text__title {
+  font-family: var(--accent-font);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-transform: uppercase;
+  inline-size: clamp(12.375rem, 3.38vw + 11.583rem, 14.625rem);
+}
+
+.dialog__button {
+  inline-size: clamp(257px, 100%, 393px);
+  block-size: 38px;
 }
 
 @media (width <= 375px) {
