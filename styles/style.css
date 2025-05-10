@@ -68,7 +68,7 @@
   border-block-end: 2px solid var(--accent-color, #000);
   padding: 5px 10px;
   font-family: inherit;
-  font-weight: 700;
+  font-variation-settings: "wght" 700;
   font-size: 18px;
 }
 
@@ -145,20 +145,10 @@
 
 .text {
   font-family: inherit;
-  font-weight: 400;
+  font-variation-settings: "wght" 400;
   font-size: 18px;
   line-height: 21px;
   inline-size: clamp(321px, 30.516vw + 12.91rem, 646px);
-}
-
-@supports (font-variation-settings: normal) {
-  .card_title {
-    font-variation-settings: "wght" 700;
-  }
-
-  .text {
-    font-variation-settings: "wght" 400;
-  }
 }
 
 .card_buttons {
