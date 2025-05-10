@@ -13,9 +13,9 @@
 .page {
   display: flex;
   flex-direction: column;
-  justify-self: center;
+  align-items: center;
   font-family: var(--head-font), sans-serif;
-  background-color: var(--bg-color);
+  background-color: var(--bg-color, #fff);
   background-image: var(--bg-gradient);
   background-attachment: fixed;
   min-inline-size: 320px;
@@ -24,24 +24,25 @@
 
 .header {
   margin-block: 100px;
-  border: 2px solid var(--accent-color);
-  padding: 128px 121px;
-  background-color: var(--bg-color);
-  min-inline-size: 700px;
+  border: 2px solid var(--accent-color, #000);
+  padding-block: clamp(120px, 0.751vw + 7.324rem, 128px);
+  background-color: var(--bg-color, #fff);
+  inline-size: clamp(375px, 100%, 700px);
 }
 
 .header-title {
   padding-block-end: 20px;
   vertical-align: bottom;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   font-weight: 400;
   font-size: clamp(3.063rem, 1.502vw + 2.71rem, 4.063rem);
   line-height: 100%;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .header-text {
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   font-weight: 400;
   font-size: clamp(0.875rem, 0.845vw + 0.677rem, 1.438rem);
   line-height: 100%;
@@ -55,21 +56,20 @@
   justify-content: center;
   align-items: center;
   gap: 50px;
-  inline-size: 700px;
+  inline-size: clamp(375px, 100%, 700px);
 }
 
 .content-section_card {
-  border: 2px solid #000;
-  background-color: #fff;
+  border: 2px solid var(--accent-color, #000);
+  background-color: var(--bg-color, #fff);
 }
 
 .card_title {
-  padding: 6px 10px;
-  font-family: inherit;
-  font-size: 18px;
-  line-height: 100%;
-  font-variation-settings: "wght" 700;
   border-block-end: 2px solid var(--accent-color, #000);
+  padding: 5px 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .card_image-section {
@@ -87,24 +87,24 @@
   position: absolute;
   top: 27px;
   right: 25px;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   font-size: 14px;
   text-transform: uppercase;
-  text-shadow: 0 0 2px #fff;
+  text-shadow: 0 0 2px var(--bg-color, #fff);
   mix-blend-mode: hard-light;
 }
 
 @supports (--webkit-text-stroke: 1px solid #fff) or
   (text-stroke: 2px solid #fff) {
   .label {
+    box-shadow: none;
     -webkit-text-stroke: 1px solid var(--bg-color, #fff);
     text-stroke: 2px solid var(--bg-color, #fff);
-    box-shadow: none;
   }
 }
 
 .lesson {
-  filter: hue-rotate(240deg);
+  filter: hue-rotate(240deg) brightness(50%);
 }
 
 .blank-page {
@@ -135,28 +135,37 @@
   filter: invert(0.7);
 }
 
-
-
 .card_text-section {
   display: flex;
   flex-direction: column;
   gap: 27px;
-  padding: 25px 25px;
   border-block-start: 2px solid var(--accent-color, #000);
+  padding: 25px 25px;
 }
 
 .text {
   font-family: inherit;
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
-  font-variation-settings: "wght" 400;
+  inline-size: clamp(321px, 30.516vw + 12.91rem, 646px);
+}
+
+@supports (font-variation-settings: normal) {
+  .card_title {
+    font-variation-settings: "wght" 700;
+  }
+
+  .text {
+    font-variation-settings: "wght" 400;
+  }
 }
 
 .card_buttons {
   display: flex;
   justify-content: end;
   gap: 4px;
-  margin-block-end: 24px;
+  margin-block-end: 23px;
   padding-inline: 25px;
 }
 
@@ -166,17 +175,17 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border: 2px solid var(--accent-color);
+  border: 2px solid var(--accent-color, #000);
   padding: 0;
-  color: #fff;
-  background-color: #fff;
+  color: var(--bg-color, #fff);
+  background-color: var(--bg-color, #fff);
   transition: box-shadow 0.3s ease;
 }
 
 .card__icon-button {
   align-self: center;
   border: 2px solid transparent;
-  background-color: #fff;
+  background-color: var(--bg-color, #fff);
   transition: border 0.3s ease;
 }
 
@@ -185,7 +194,7 @@
 }
 
 .card__icon-button:focus-visible {
-  border: 2px solid var(--accent-color);
+  border: 2px solid var(--accent-color, #000);
   transition: border 0.3s ease;
 }
 
@@ -199,14 +208,14 @@
 }
 
 .button:not(.card__icon-button):focus-visible {
-  box-shadow: 2px 2px 0 var(--accent-color);
+  box-shadow: 2px 2px 0 var(--accent-color, #000);
 }
 
 .button:not(.card__icon-button)::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: #000;
+  background-color: var(--accent-color, #000);
   transition: transform 0.5s ease-in-out;
   transform: scaleX(0);
   transform-origin: left;
@@ -222,7 +231,7 @@
 .button__text {
   position: relative;
   z-index: 2;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   font-size: 14px;
   line-height: 90%;
   mix-blend-mode: difference;
@@ -231,21 +240,21 @@
 .button__memory {
   display: flex;
   justify-content: center;
-  min-inline-size: 335px;
   margin-block-end: 103px;
+  inline-size: clamp(306px, 2.723vw + 18.487rem, 335px);
   block-size: 55px;
 }
 
 .floppy {
   position: relative;
   z-index: 2;
-  color: var(--bg-color);
+  color: var(--bg-color, #fff);
   mix-blend-mode: difference;
 }
 
-dialog::backdrop {
+.dialog::backdrop {
   opacity: 0.75;
-  background-color: var(--accent-color);
+  background-color: var(--accent-color, #000);
   background-position: fixed;
 }
 
@@ -253,8 +262,9 @@ dialog[open] {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 30px;
-  min-inline-size: 353px;
+  padding-inline: 28px;
+  padding-block: 28px;
+  min-inline-size: 357px;
 }
 
 .dialog-text {
@@ -267,18 +277,36 @@ dialog[open] {
 }
 
 .dialog-text__title {
-  font-family: var(--accent-font);
+  font-family: var(--accent-font), sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 150%;
+  line-height: 21px;
   text-transform: uppercase;
-  inline-size: clamp(12.375rem, 3.38vw + 11.583rem, 14.625rem);
+  max-inline-size: 198px;
 }
 
 .dialog__button {
-  inline-size: clamp(257px, 100%, 393px);
   block-size: 38px;
 }
 
 @media (width <= 375px) {
+  .button__memory {
+    flex-direction: column;
+    block-size: 85px;
+  }
+  .floppy {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dialog[open] {
+    align-items: center;
+    padding-inline: 38px;
+    max-inline-size: 341px;
+  }
+
+  .dialog__button {
+    max-inline-size: 257px;
+    inline-size: 100vw;
+  }
 }
