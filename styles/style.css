@@ -59,33 +59,35 @@
   inline-size: clamp(375px, 100%, 700px);
 }
 
-.content-section_card {
+.content-section__card {
   border: 2px solid var(--accent-color, #000);
   background-color: var(--bg-color, #fff);
 }
 
-.card_title {
+.card__title {
   border-block-end: 2px solid var(--accent-color, #000);
   padding: 5px 10px;
   font-family: inherit;
-  font-variation-settings: "wght" 700;
   font-size: 18px;
+  font-variation-settings: "wght" 700;
 }
 
-.card_image-section {
+.card__image-section {
   position: relative;
   aspect-ratio: 1/1;
 }
 
 .image {
   display: block;
+  object-fit: cover;
+  object-position: center;
   inline-size: 100%;
   aspect-ratio: 1/1;
 }
 
 .label {
   position: absolute;
-  top: 27px;
+  top: 25px;
   right: 25px;
   font-family: var(--accent-font), sans-serif;
   font-size: 14px;
@@ -103,39 +105,39 @@
   }
 }
 
-.lesson {
+.hue-brightness {
   filter: hue-rotate(240deg) brightness(50%);
 }
 
-.blank-page {
+.blur {
   filter: blur(0.2rem);
 }
 
-.first-project {
+.sepia {
   filter: sepia(80%);
 }
 
-.ideal {
+.brightness {
   filter: brightness(150%);
 }
 
-.second-project {
+.contrast {
   filter: contrast(50%);
 }
 
-.dark {
+.grayscale {
   filter: grayscale(100%);
 }
 
-.third-project {
+.saturate {
   filter: saturate(10%);
 }
 
-.now {
+.invert {
   filter: invert(0.7);
 }
 
-.card_text-section {
+.card__text-section {
   display: flex;
   flex-direction: column;
   gap: 27px;
@@ -145,13 +147,13 @@
 
 .text {
   font-family: inherit;
-  font-variation-settings: "wght" 400;
   font-size: 18px;
   line-height: 21px;
+  font-variation-settings: "wght" 400;
   inline-size: clamp(321px, 30.516vw + 12.91rem, 646px);
 }
 
-.card_buttons {
+.card__buttons {
   display: flex;
   justify-content: end;
   gap: 4px;
@@ -167,9 +169,9 @@
   gap: 8px;
   border: 2px solid var(--accent-color, #000);
   padding: 0;
-  color: var(--bg-color, #fff);
   background-color: var(--bg-color, #fff);
   transition: box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .card__icon-button {
@@ -183,13 +185,13 @@
   outline: none;
 }
 
-.card__icon-button:focus-visible {
-  border: 2px solid var(--accent-color, #000);
-  transition: border 0.3s ease;
+.card__icon-button:focus-visible .like-icon {
+  outline: 2px solid var(--accent-color, #000);
+  transition: outline 0.3s ease;
 }
 
 .card__like-button {
-  inline-size: 130px;
+  padding-inline: 35px;
   block-size: 38px;
 }
 
@@ -221,6 +223,7 @@
 .button__text {
   position: relative;
   z-index: 2;
+  color: var(--bg-color, #fff);
   font-family: var(--accent-font), sans-serif;
   font-size: 14px;
   line-height: 90%;
@@ -231,8 +234,8 @@
   display: flex;
   justify-content: center;
   margin-block-end: 103px;
+  padding-block: 15px;
   inline-size: clamp(306px, 2.723vw + 18.487rem, 335px);
-  block-size: 55px;
 }
 
 .floppy {
@@ -245,16 +248,18 @@
 .dialog::backdrop {
   opacity: 0.75;
   background-color: var(--accent-color, #000);
-  background-position: fixed;
 }
 
-dialog[open] {
-  display: flex;
+.dialog {
   flex-direction: column;
   gap: 30px;
   padding-inline: 28px;
   padding-block: 28px;
   min-inline-size: 357px;
+}
+
+.dialog[open] {
+  display: flex;
 }
 
 .dialog-text {
@@ -276,20 +281,26 @@ dialog[open] {
 }
 
 .dialog__button {
-  block-size: 38px;
+  padding-block: 10px;
+  text-transform: uppercase;
 }
 
 @media (width <= 375px) {
+  .label {
+    top: 23px;
+    right: 11px;
+  }
+
   .button__memory {
     flex-direction: column;
-    block-size: 85px;
+    padding-block: 16px;
   }
   .floppy {
     width: 28px;
     height: 28px;
   }
 
-  .dialog[open] {
+  .dialog {
     align-items: center;
     padding-inline: 38px;
     max-inline-size: 341px;

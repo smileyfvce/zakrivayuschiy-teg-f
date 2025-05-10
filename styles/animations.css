@@ -10,7 +10,7 @@
 
 */
 
-@keyframes heartbeat {
+@keyframes increase {
   from {
     scale: 1;
   }
@@ -19,7 +19,7 @@
   }
 }
 
-@keyframes sparks {
+@keyframes appearance {
   from {
     opacity: 0;
   }
@@ -81,9 +81,9 @@
 
 .like-icon.is-liked .heart {
   transform-origin: center;
-  animation: heartbeat 0.3s 0.1s normal ease-in;
+  animation: increase 0.3s 0.1s normal ease-in;
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks 0.3s 0.3s normal ease-in;
+  animation: appearance 0.3s 0.3s normal ease-in;
 }
