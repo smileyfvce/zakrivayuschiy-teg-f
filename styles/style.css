@@ -17,6 +17,7 @@
   font-family: var(--head-font), sans-serif;
   background-color: var(--bg-color, #fff);
   background-image: var(--bg-gradient);
+  background-size: cover;
   background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
@@ -105,35 +106,35 @@
   }
 }
 
-.hue-brightness {
+.filter-hue-brightness {
   filter: hue-rotate(240deg) brightness(50%);
 }
 
-.blur {
+.filter-blur {
   filter: blur(0.2rem);
 }
 
-.sepia {
+.filter-sepia {
   filter: sepia(80%);
 }
 
-.brightness {
+.filter-brightness {
   filter: brightness(150%);
 }
 
-.contrast {
+.filter-contrast {
   filter: contrast(50%);
 }
 
-.grayscale {
+.filter-grayscale {
   filter: grayscale(100%);
 }
 
-.saturate {
+.filter-saturate {
   filter: saturate(10%);
 }
 
-.invert {
+.filter-invert {
   filter: invert(0.7);
 }
 
